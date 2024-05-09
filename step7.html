@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <style>
+            h1{
+                background-color: black;
+                text-align: center;
+            }
+            #sim{
+                display: none;
+            }
+            #m{
+                position: relative;
+                padding: 2%;
+                height: 600px;
+                width: 1350px;
+                border-color: black;
+                border-radius: 2%;
+                border: 5px;
+                border-style: double;
+                cursor:pointer;
+            }
+            .sys{
+                position:absolute;
+                width: 200px;
+                height: 250px;
+                left: 1205px;
+
+            }
+            .test{
+                position: absolute;
+                width:50px;
+                height: 40px;
+                top: 220px;
+                left: 1225px;
+            }
+            .reset{
+                position: absolute;
+                width: 50px;
+                height: 40px;
+                top: 220px;
+                left:1330px ;
+            }
+            
+            
+            .img1{
+                left: 0px;
+                position:absolute;
+                z-index: 0;
+            }
+            .img2{
+                top: 180px;
+                left: 780px;
+                opacity: 0.7;
+                z-index: 2;
+            }
+            .img3{
+                left: 446px;
+                top:300px;
+                opacity: 0.7;
+                z-index: 2;
+            }
+            
+    
+
+            .btn{
+                z-index: 1;
+                position: absolute;
+                left: 1100px;
+                top: 550px;
+                height: 50px;
+                width: 40px;
+                transition: background-color 0.3s;
+                border: none;
+                font-style: bold;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px ;
+                font-size: 25px;
+                border-radius: 50%;
+                color: white;
+                background-color:black;
+                cursor: pointer;   
+            }
+            #red{
+                margin-left: 2px;
+            }
+            #st{
+                padding: 5px;
+                float: right;
+                height: 50px;
+                width: 120px;
+                border: 5px;
+                border-style: double;
+                display: flex;
+        justify-content: flex-start;
+            }
+        </style>
+        <title>
+            Virtual Lab
+        </title>
+        <script>
+        var container = document.getElementById('m');
+        
+        function getImageBasedOnNumber() {
+            var img2Elements = document.querySelectorAll('.reset');
+            img2Elements.forEach(function(element) {
+                element.onclick = function() {
+                    var img3Elements = document.querySelectorAll('.test');
+            img3Elements.forEach(function(element) {
+                element.onclick = function() {
+                    // Handle click event for img2
+                    window.location.href = "step8.html?val=" + encodeURIComponent( document.getElementById('sim').value);
+                };
+            });
+                    
+                };
+            });
+            
+
+            // Get the number passed from the query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const number = urlParams.get('val')+4;
+            
+            const imagePath = number + '.png'; // e.g., '1.png', '2.png', '3.png'
+
+            // Set the image src
+            document.getElementById('sim').value=urlParams.get('val');
+            document.getElementById('imageDisplay').src = imagePath;
+        }
+
+        // Call the function on page load
+        window.onload = getImageBasedOnNumber;
+        </script>
+    </head>
+    <body>
+        
+        <h1 style="color:white;">Water Leakage Detection by using sensing cable</h1>
+        <p><b>STEP 7: </b>Reset the experiment.<input id="sim" type="number"/></p>
+       
+        <div id="m">
+            
+                          
+        <img id="imageDisplay" class="img1"/>
+        <img id="system" class="sys" src="system.png"/>
+        <img id="test" class="test" src="test.png"/>
+        <img id="reset" class="reset" src="reset.png"/>
+    
+       
+    </div>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <style>
+            h1{
+                background-color: black;
+                text-align: center;
+            }
+            #sim{
+                display: none;
+            }
+            #m{
+                
+                padding: 2%;
+                height: 600px;
+                width: 1350px;
+                border-color: black;
+                border-radius: 2%;
+                border: 5px;
+                border-style: double;
+                cursor:pointer;
+            }
+            .btn{
+                height: 50px;
+                width: 40px;
+                transition: background-color 0.3s;
+                border: none;
+                font-style: bold;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px ;
+                font-size: 25px;
+                border-radius: 50%;
+                color: white;
+                background-color:black;
+                cursor: pointer;   
+            }
+            #red{
+                margin-top: 10px;
+                height: 40px;
+            }
+            #green{
+                margin-top: 10px;
+                height: 40px;
+            }
+            #st{
+
+                padding: 5px;
+                float: right;
+                height: 120px;
+                width: 50px;
+                border: 5px;
+                border-style: double;
+                display: block;
+            }
+        </style>
+        <title>
+            Virtual Lab
+        </title>
+        <script>
+        var container = document.getElementById('m');
+        function next(){
+            window.location.href = "step5.html?va=" + encodeURIComponent( document.getElementById('sim').value);
+        }
+    
+        function getImageBasedOnNumber() {
+            // Get the number passed from the query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const number = urlParams.get('val')+6;
+            
+            const imagePath = number + '.png'; // e.g., '1.png', '2.png', '3.png'
+
+            // Set the image src
+            document.getElementById('sim').value=urlParams.get('val');
+            document.getElementById('imageDisplay').src = imagePath;
+        }
+
+        // Call the function on page load
+        window.onload = getImageBasedOnNumber;
+        </script>
+    </head>
+    <body>
+        
+        <h1 style="color: white;">Water Leakage Detection by using sensing cable</h1>
+        <p><b>STEP 3: </b>Start the experiment.   <input id="sim" type="number"/></p>
+       
+        <div id="m">  
+        <img id="imageDisplay"/>
+       <div id="st">
+            <img id="green" src="green.png" onclick="green()"/>
+            <img id="red" src="red.png"/>
+        </div>
+    <button class="btn" onclick="next()"> > </button>
+       
+    </div>
+    </body>
+</html>

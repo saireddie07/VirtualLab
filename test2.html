@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <style>
+            h1{
+                background-color: black;
+                text-align: center;
+            }
+            .header{
+                width: 1500px;
+                position:fixed;
+                background-color: black;
+                text-align: center;
+            }
+            .main{
+                padding: 2%;
+                height: 600px;
+                width: 1350px;
+                border-color: black;
+                border-radius: 2%;
+                border: 5px;
+                border-style: double;
+            }
+            .im{
+                width: 1000px;
+                height: 550px;
+            }
+            .btn{
+                height: 50px;
+                width: 40px;
+                transition: background-color 0.3s;
+                border: none;
+                font-style: bold;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                padding: 5px ;
+                font-size: 35px;
+                border-radius: 50%;
+                color: white;
+                background-color:black;
+                cursor: pointer;   
+            }
+            .cp{
+                margin-top: 70px;
+            }
+            .calc{
+                float: right;
+                margin-right: 90px; /* Aligns children (the link) to the right */
+            }
+        </style>
+        <title>
+            Virtual Lab
+        </title>
+        <script>
+            function sims(event)
+            {
+                var flag=document.getElementById("measure")
+                if(flag.options[flag.selectedIndex].value=="ft")
+                {
+                    var area=document.getElementById("a").value;
+                var cc=document.getElementById("c").value;
+                var length=document.getElementById("len");
+
+                var a=parseInt(area);
+                var c=parseInt(cc);
+
+                len=a/c;
+                length.innerText=len+"ft";
+                if(len>=65 && len<=500){
+                    document.getElementById("si").value=1;
+                }
+                else if(len>500 && len<=1000){
+                    document.getElementById("si").value=2;
+                }
+                else if(len>1000 && len<=1500){
+                    document.getElementById("si").value=3;
+                }
+                else if(len>1500 && len<=2000){
+                    document.getElementById("si").value=4;
+                }
+                else if(len>2000 && len<=2500){
+                    document.getElementById("si").value=5;
+                }
+                else if(len>2500 && len<=3000){
+                    document.getElementById("si").value=6;
+                }
+                else{
+                    alert("Out of range");
+                }
+
+                }
+                else{
+                var area=document.getElementById("a").value;
+                var cc=document.getElementById("c").value;
+                var length=document.getElementById("len");
+
+                var a=parseInt(area);
+                var c=parseInt(cc);
+
+                var len;
+                len=a/c;
+                 
+
+                length.innerText=len+"m";
+                if(len>=20 && len<=150){
+                    document.getElementById("si").value=1;
+                }
+                else if(len>150 && len<=300){
+                    document.getElementById("si").value=2;
+                }
+                else if(len>300 && len<=450){
+                    document.getElementById("si").value=3;
+                }
+                else if(len>450 && len<=600){
+                    document.getElementById("si").value=4;
+                }
+                else if(len>600 && len<=750){
+                    document.getElementById("si").value=5;
+                }
+                else if(len>750 && len<=900){
+                    document.getElementById("si").value=6;
+                }
+                else{
+                    alert("Out of range");
+                }
+            }
+                
+            }
+            function next()
+            {
+                
+                if(document.getElementById("si").value<1 || document.getElementById("si").value>6 || document.getElementById("si").value==null)
+                    {
+                        alert("Out of range");
+                }
+                else{
+                    window.location.href = "step3.html?value=" + encodeURIComponent(document.getElementById("si").value);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="color: white;">Water Leakage Detection by using sensing cable</h1></div>
+            <p>hi</p>
+        <p class="cp"><b>STEP 1:</b> Calculation for sensing cable and SIM</p>
+        <p class="calc"> 
+           <label>Scale</label>
+            <select id="measure">
+            <option value="ft">ft </option>
+            <option value="m">m</option>
+            </select><br> <br>        
+            <label>Area:</label>
+            <input type="number" id="a"/><br>
+            <label>  C.C      :   </label>
+            <input type="number" id="c"/><br><br>
+            <button onclick="sims()">SUBMIT</button><br><br>
+            <label>Result:</label>
+             <label id="len">___</label><br><br>
+            <label >No of sims:</label><input type="number" id="si" name="simsnum"/></label>       
+        </p> 
+        <div class="main">
+        <img class="im" src="pipe.png"/>
+        <button id="next" class="btn" onclick="next()">></button>
+    </div>
+    </body>
+</html>

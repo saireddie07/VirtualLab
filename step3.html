@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <style>
+            h1{
+                background-color: black;
+                text-align: center;
+            }
+            div{
+                padding: 2%;
+                height: 600px;
+                width: 1350px;
+                border-color: black;
+                border-radius: 2%;
+                border: 5px;
+                border-style: double;
+            }
+            
+            .btn{
+                height: 50px;
+                width: 40px;
+                transition: background-color 0.3s;
+                border: none;
+                font-style: bold;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px ;
+                font-size: 25px;
+                border-radius: 50%;
+                color: white;
+                background-color:black;
+                cursor: pointer;
+                
+            }
+        </style>
+        <title>
+            Virtual Lab
+        </title>
+        <script>
+             function getImageBasedOnNumber() {
+            // Get the number passed from the query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const number = urlParams.get('value');
+        
+            const imagePath = number + '.png'; // e.g., '1.png', '2.png', '3.png'
+
+            // Set the image src
+            document.getElementById('flag').value=urlParams.get('value');
+            document.getElementById('imageDisplay').src = imagePath;
+        }
+        function next(){
+             
+           
+                
+            window.location.href = "step4.html?val=" + encodeURIComponent( document.getElementById('flag').value);
+                
+        }
+
+        // Call the function on page load
+        window.onload = getImageBasedOnNumber;
+        </script>
+    </head>
+    <body>
+        
+        <h1 style="color: white;">Water Leakage Detection by using sensing cable</h1>
+        <p><b>STEP 2: </b>Placing SIM</p> <p>No.of Sims :<input id="flag" type="number"/></p>
+        <div>
+        <img id="imageDisplay"/>
+        <button class="btn" onclick="next()" >></button>
+    </div>
+    </body>
+</html>
